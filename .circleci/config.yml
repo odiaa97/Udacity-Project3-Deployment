@@ -15,41 +15,35 @@ jobs:
       - node/install:
           node-version: "14.15"
       - checkout
-      - aws-cli/setup
       # Use root level package.json to install dependencies in the frontend app
       - run:
           name: Install Front-End Dependencies
-          command: 
-            frontend:install
-            echo "NODE --version"
+          command: |
+            echo "NODE --version" 
             echo $(node --version)
-            echo "NPM --version"
+            echo "NPM --version" 
             echo $(npm --version)
             npm run frontend:install
       # TODO: Install dependencies in the the backend API
       - run:
           name: Install API Dependencies
-          command: 
-            api:install
-            echo "TODO: Install dependencies in the the backend API  "
+          command: |
+            npm run api:install
       # TODO: Lint the frontend
       - run:
           name: Front-End Lint
-          command: 
-            frontend:lint
-            echo "TODO: Lint the frontend"
+          command: |
+            npm run frontend:lint
       # TODO: Build the frontend app
       - run:
           name: Front-End Build
-          command: 
-            frontend:build
-            echo "TODO: Build the frontend app"
+          command: |
+            npm run frontend:build
       # TODO: Build the backend API
       - run:
           name: API Build
-          command: 
-            api:build
-            echo "TODO: Build the backend API"
+          command: |
+            npm run api:build
   # deploy step will run only after manual approval
   deploy:
     docker:
@@ -66,6 +60,7 @@ jobs:
           # TODO: Install, build, deploy in both apps
           command: |
             echo "# TODO: Install, build, deploy in both apps"
+            npm run deploy
 
 workflows:
   udagram:
@@ -75,7 +70,7 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - master
           type: approval
           requires:
             - build
