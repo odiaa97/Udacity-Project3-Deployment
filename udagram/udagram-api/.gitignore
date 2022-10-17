@@ -38,6 +38,4 @@ node_modules
 venv/
 .env
 # Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.config.yml
-!.elasticbeanstalk/*.global.yml
+
