@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "",
   "engines": {
-    "node": "14.15.0"
+    "node": ">16.0.0"
   },
   "main": "server.ts",
   "scripts": {
@@ -12,7 +12,7 @@
     "dev": "npx ts-node-dev --respawn --transpile-only ./src/server.ts",
     "prod": "npx tsc && node ./www/server.js",
     "clean": "rm -rf www/ || true",
-    "deploy": "eb deploy Udagramapi2-env && eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME POSTGRES_DB=$POSTGRES_DB POTGRES_HOST=$POTGRES_HOST POSTGRES_PASSWORD=$POTGRES_PASSWORD POSTGRES_PORT=$POSTGRES_PORT JWT_SECRET=$JWT_SECRET",
+    "deploy": "eb init --region us-east-1 udagram-api2 --platform Nodejs 16 && eb use  Udagramapi2-env && eb deploy && eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME POSTGRES_DB=$POSTGRES_DB POTGRES_HOST=$POTGRES_HOST POSTGRES_PASSWORD=$POTGRES_PASSWORD POSTGRES_PORT=$POSTGRES_PORT JWT_SECRET=$JWT_SECRET",
     "build": "npm cache clean --force && npm install . && npm run clean && tsc && cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
