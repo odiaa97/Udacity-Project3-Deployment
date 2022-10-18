@@ -53,7 +53,7 @@ jobs:
       - checkout
       - run:
           name: Deploy App
-          command: npm run deploy
+          command: npm run frontend:build
 workflows:
   udagram:
     jobs:
