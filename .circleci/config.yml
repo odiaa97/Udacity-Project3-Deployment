@@ -63,6 +63,7 @@ workflows:
   udagram:
     jobs:
       - build
+      - deploy
       - hold:
           filters:
             branches:
