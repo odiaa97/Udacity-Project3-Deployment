@@ -16,9 +16,9 @@ jobs:
       - node/install:
           node-version: "14.15"
       - checkout
-      - eb/setup
       - aws-cli/setup
-      - checkout
+      - node/install
+      - eb/setup
       # Use root level package.json to install dependencies in the frontend app
       - run:
           name: Install Front-End Dependencies
@@ -57,7 +57,7 @@ jobs:
       - checkout
       - run:
           name: Deploy App
-          command: npm run deploy
+          command: npm run frontend:install && npm run api:install && npm run frontend:build && npm run api:build && npm run deploy
 
 workflows:
   udagram:
